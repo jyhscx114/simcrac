@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>刷题与模拟考试 · 业余无线电台操作技术能力验证</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+	<div class="inner">
+		<div class="brand">业余无线电台操作技术能力验证<small>刷题与模拟考试系统</small></div>
+		<div class="user">
+			<span class="name" id="user-name"></span>
+			<a href="javascript:;" id="btn-home">题库首页</a>
+			<a href="javascript:;" id="btn-logout">退出登录</a>
+		</div>
+	</div>
+</header>
+
+<div class="page">
+	<div class="crumb" id="crumb"></div>
+
+	<!-- 首页：类别选择 -->
+	<section id="view-home">
+		<div class="cards" id="cards"></div>
+	</section>
+
+	<!-- 练习（刷题） -->
+	<section id="view-practice" class="hide">
+		<div class="work">
+			<div class="panel" id="practice-main"></div>
+			<aside class="sheet" id="practice-sheet"></aside>
+		</div>
+	</section>
+
+	<!-- 模拟考试 -->
+	<section id="view-exam" class="hide">
+		<div class="exam-bar" id="exam-bar"></div>
+		<div class="work">
+			<div class="panel" id="exam-main"></div>
+			<aside class="sheet" id="exam-sheet"></aside>
+		</div>
+	</section>
+
+	<!-- 成绩 -->
+	<section id="view-result" class="hide"></section>
+
+	<!-- 错题本 -->
+	<section id="view-wrong" class="hide"></section>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="data/bank_a.js"></script>
+<script src="data/bank_b.js"></script>
+<script src="data/bank_c.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

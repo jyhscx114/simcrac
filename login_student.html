@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>业余无线电台操作技术能力验证及信息管理系统</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="head-bar">
+	<div class="cont">
+		<div class="logo"><span class="mark">CR</span>业余无线电台操作技术能力验证</div>
+		<div class="nav">
+			<a href="javascript:;">首页</a>
+			<a href="javascript:;">考试须知</a>
+			<a href="javascript:;">题库说明</a>
+		</div>
+	</div>
+</header>
+
+<section class="login">
+	<div class="cont">
+		<div class="login-box">
+			<h1 class="title">业余无线电台操作技术能力验证<br><span class="pos-relative">刷题与模拟考试系统</span></h1>
+			<form class="form-login" id="form_info" onsubmit="return false;">
+				<div class="row">
+					<label class="row-lb">账&emsp;号</label>
+					<input id="input-acc" type="text" class="row-ipt" name="loginName" placeholder="请输入账号（可留空）" autocomplete="off">
+				</div>
+				<div class="row">
+					<label class="row-lb">密&emsp;码</label>
+					<input id="input-pwd" type="password" class="row-ipt" name="pwdshow" placeholder="请输入密码（可留空）" autocomplete="off">
+				</div>
+				<div class="pwd-control clearfix">
+					<div class="fl">
+						<span class="checkbox">
+							<input type="checkbox" id="login_remeber">
+							<label for="login_remeber">下次自动登录</label>
+						</span>
+					</div>
+					<div class="fr"><a href="javascript:;" id="link_forgot">忘记密码？</a></div>
+				</div>
+				<div class="btns clearfix">
+					<button type="button" class="btn" id="btn_login">登录</button>
+					<button type="button" class="btn btn-grey" id="btn_register">注册</button>
+				</div>
+				<p class="tip-line">本系统为本地练习工具，账号与密码均可留空，直接点击登录即可</p>
+			</form>
+		</div>
+	</div>
+</section>
+
+<footer class="foot">
+	<div class="cont">
+		<p>业余无线电台操作技术能力验证 · 刷题与模拟考试系统</p>
+		<p>题库来源：A 类 / B 类 / C 类操作证书考试题库</p>
+	</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+	var toastEl = document.getElementById('toast');
+	var toastTimer = null;
+	function toast(msg) {
+		toastEl.textContent = msg;
+		toastEl.classList.add('show');
+		clearTimeout(toastTimer);
+		toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
+	}
+
+	var accEl = document.getElementById('input-acc');
+	var pwdEl = document.getElementById('input-pwd');
+	var remEl = document.getElementById('login_remeber');
+
+	// 回填上次登录的账号
+	try {
+		var saved = JSON.parse(localStorage.getItem('crac_account') || 'null');
+		if (saved && saved.acc) { accEl.value = saved.acc; remEl.checked = true; }
+	} catch (e) {}
+
+	function doLogin() {
+		var acc = (accEl.value || '').trim();
+		var pwd = (pwdEl.value || '').trim();
+		// 账号、密码均可留空，直接登录
+		var user = { acc: acc, name: acc || '考生', pwd: pwd, loginAt: Date.now() };
+		localStorage.setItem('crac_user', JSON.stringify(user));
+		if (remEl.checked) localStorage.setItem('crac_account', JSON.stringify({ acc: acc }));
+		else localStorage.removeItem('crac_account');
+		location.href = 'app.html';
+	}
+
+	document.getElementById('btn_login').addEventListener('click', doLogin);
+	accEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') pwdEl.focus(); });
+	pwdEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
+
+	document.getElementById('btn_register').addEventListener('click', function () {
+		toast('本练习系统无需注册，直接登录即可');
+	});
+	document.getElementById('link_forgot').addEventListener('click', function () {
+		toast('本练习系统无需密码找回，直接登录即可');
+	});
+})();
+</script>
+</body>
+</html>
