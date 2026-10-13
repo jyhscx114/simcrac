@@ -535,9 +535,9 @@
 			return;
 		}
 		var user = LS.get('crac_user', null);
-		if (!user) { location.replace('login_student.html'); return; }
+		if (!user) { location.replace('index.html'); return; }
 		$('user-name').textContent = user.name || user.acc || '考生';
-		$('btn-logout').addEventListener('click', function () { LS.del('crac_user'); location.href = 'login_student.html'; });
+		$('btn-logout').addEventListener('click', function () { LS.del('crac_user'); location.href = 'index.html'; });
 		$('btn-home').addEventListener('click', renderHome);
 		window.addEventListener('beforeunload', function () { clearInterval(examTimer); });
 		renderHome();

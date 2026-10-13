@@ -5,11 +5,11 @@
 
 ## 一、使用方式
 
-1. 双击打开 `login_student.html`（推荐 Chrome / Edge）。
+1. 双击打开 `index.html`（推荐 Chrome / Edge）。
 2. 账号与密码都是可选的：直接点「登录」即可进入，也可以填写账号作为显示名称（本工具为本地练习用，无后端、无真实账号校验）。
 3. 在首页选择 A / B / C 类，然后选择「顺序刷题」「随机刷题」「模拟考试」或「错题本」。
 
-> 也可以在此目录执行 `python -m http.server 8899`，再访问 <http://127.0.0.1:8899/login_student.html>。
+> 也可以在此目录执行 `python -m http.server 8899`，再访问 <http://127.0.0.1:8899/>。
 > 所有数据都保存在浏览器本地（localStorage），无需联网。
 
 ## 二、考试规则（已内置到「模拟考试」）
@@ -36,7 +36,7 @@
 ## 四、目录结构
 
 ```
-login_student.html      登录页（入口）
+index.html              登录页（入口，核心文件）
 app.html                主应用（刷题 / 模拟考试 / 错题本 / 成绩）
 assets/css/style.css    样式（蓝色主题，仿原系统）
 assets/js/app.js        应用逻辑
